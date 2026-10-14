@@ -1,0 +1,261 @@
+/* ==============================================================================
+   RESPONSIVE DESIGN & ACCESSIBILITY SYSTEM
+   ============================================================================== */
+
+/* Tablet & Smaller Laptops (<= 1024px) */
+@media (max-width: 1024px) {
+  .photo-columns-grid {
+    grid-template-columns: repeat(4, 1fr);
+    width: 114vw;
+    left: -7vw;
+  }
+
+  .story-interactive-stage {
+    gap: 36px;
+    padding: 0 16px;
+  }
+
+  .hero-photo-card img {
+    height: 440px;
+  }
+
+  .accent-card-1 {
+    left: -20px;
+    width: 150px;
+    height: 190px;
+  }
+
+  .accent-card-2 {
+    right: -20px;
+    width: 150px;
+    height: 190px;
+  }
+
+  .carousel-ring {
+    width: 230px;
+    height: 320px;
+  }
+
+  .carousel-card {
+    width: 230px;
+    height: 320px;
+  }
+}
+
+/* Medium Tablets & Mobile Landscape (<= 860px) */
+@media (max-width: 860px) {
+  .video-controls-header {
+    top: 20px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .video-control-pill {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+  }
+
+  /* Story section stacks vertically */
+  .story-interactive-stage {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-photo-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hero-photo-card img {
+    height: 380px;
+  }
+
+  .accent-card {
+    display: none; /* Hide decorative floating accents on mobile to prevent clutter */
+  }
+
+  .message-story-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .message-card {
+    padding: 32px 24px;
+  }
+
+  /* Modal turns into vertical stacked layout */
+  .photo-modal-window {
+    grid-template-columns: 1fr;
+    max-height: 88vh;
+    border-radius: 20px;
+  }
+
+  .modal-image-pane {
+    min-height: 260px;
+    max-height: 320px;
+  }
+
+  .modal-details-pane {
+    padding: 24px 20px;
+  }
+
+  .modal-title {
+    font-size: 1.45rem;
+  }
+
+  .modal-story-text {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* Standard Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  .photo-columns-grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: 120vw;
+    left: -10vw;
+    gap: 12px;
+  }
+
+  .bg-photo-card.ratio-portrait { height: 210px; }
+  .bg-photo-card.ratio-landscape { height: 140px; }
+  .bg-photo-card.ratio-square { height: 170px; }
+
+  /* Countdown grid on mobile */
+  .countdown-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 340px;
+  }
+
+  .time-unit-card {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .time-digit {
+    font-size: 2.3rem;
+  }
+
+  .time-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+
+  .countdown-title {
+    font-size: 2.1rem;
+  }
+
+  .countdown-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .btn-birthday-reveal {
+    padding: 18px 36px;
+    font-size: 1.15rem;
+  }
+
+  /* Bottom-right demo widget on mobile */
+  .surprise-demo-widget {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 14px;
+    min-width: 150px;
+    border-radius: 16px;
+  }
+
+  .demo-timer-digits {
+    font-size: 1.35rem;
+  }
+
+  .btn-demo-welcome {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .letterbox-bar {
+    height: 24px;
+  }
+
+  .video-caption-container {
+    bottom: 45px;
+  }
+
+  .video-title {
+    font-size: 1.4rem;
+  }
+
+  .carousel-stage {
+    height: 420px;
+  }
+
+  .carousel-ring {
+    width: 190px;
+    height: 270px;
+  }
+
+  .carousel-card {
+    width: 190px;
+    height: 270px;
+  }
+
+  .card-title-text {
+    font-size: 0.92rem;
+  }
+
+  .carousel-controls-bar {
+    gap: 14px;
+    margin-top: 25px;
+  }
+
+  .ambient-sound-toggle {
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Very Small Devices (<= 380px) */
+@media (max-width: 380px) {
+  .countdown-cards-grid {
+    gap: 8px;
+  }
+
+  .time-unit-card {
+    padding: 14px 8px;
+  }
+
+  .time-digit {
+    font-size: 1.9rem;
+  }
+
+  .carousel-ring {
+    width: 160px;
+    height: 230px;
+  }
+
+  .carousel-card {
+    width: 160px;
+    height: 230px;
+  }
+}
+
+/* Reduced Motion Mode (Accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .photo-column-track {
+    animation: none !important;
+  }
+
+  .bg-glow-orb {
+    animation: none !important;
+  }
+}

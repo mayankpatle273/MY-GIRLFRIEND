@@ -1,0 +1,283 @@
+/* ==============================================================================
+   FULL-SCREEN CINEMATIC VIDEO INTRODUCTION
+   ============================================================================== */
+
+.video-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  background-color: #030305;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+/* Widescreen Video Player */
+.cinematic-video-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.08) saturate(1.1);
+  transition: opacity 0.8s ease;
+}
+
+/* Anamorphic Letterbox Bars (Cinematic 2.39:1 aspect ratio feel) */
+.letterbox-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: #020204;
+  z-index: 25;
+  pointer-events: none;
+  transition: transform 0.6s ease;
+}
+
+.letterbox-bar.top {
+  top: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.letterbox-bar.bottom {
+  bottom: 0;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Video Atmosphere Tint */
+.video-color-grade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, rgba(3,3,5,0.7) 80%, rgba(3,3,5,0.95) 100%);
+  z-index: 22;
+  pointer-events: none;
+}
+
+/* Top Floating Controls Bar */
+.video-controls-header {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.video-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.video-control-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(14, 15, 22, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 40px;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.video-control-pill:hover {
+  background: rgba(244, 208, 104, 0.15);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.video-control-pill svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Bottom Cinematic Captions */
+.video-caption-container {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 28;
+  width: 90%;
+  max-width: 640px;
+  pointer-events: none;
+  animation: captionFadeIn 1.5s ease 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes captionFadeIn {
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.video-tag {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+}
+
+.video-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+  letter-spacing: 0.02em;
+}
+
+/* Fallback & Manual Play Overlay */
+.video-fallback-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 35;
+  text-align: center;
+  padding: 24px;
+}
+
+.video-fallback-overlay.active {
+  display: flex;
+}
+
+.btn-play-video {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f4d068 0%, #ff6584 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 35px rgba(244, 208, 104, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.btn-play-video:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 50px rgba(255, 101, 132, 0.7);
+}
+
+.btn-play-video svg {
+  width: 32px;
+  height: 32px;
+  fill: #060609;
+  margin-left: 4px;
+}
+
+.fallback-heading {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.fallback-subtext {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 420px;
+}
+
+/* Scroll Transition Prompt shown once video finishes playing */
+.video-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgba(14, 15, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 12px 28px;
+  border-radius: 40px;
+  border: 1px solid rgba(244, 208, 104, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(244, 208, 104, 0.25);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-scroll-indicator.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  animation: promptPulseGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes promptPulseGlow {
+  0% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(244, 208, 104, 0.2);
+    border-color: rgba(244, 208, 104, 0.4);
+  }
+  100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(244, 208, 104, 0.45);
+    border-color: rgba(244, 208, 104, 0.8);
+  }
+}
+
+.video-scroll-indicator:hover {
+  background: rgba(244, 208, 104, 0.18);
+  color: var(--accent-gold);
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.video-scroll-indicator svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--accent-gold);
+  animation: bounceDown 1.8s infinite;
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(7px); }
+  60% { transform: translateY(3px); }
+}

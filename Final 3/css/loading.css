@@ -1,0 +1,169 @@
+/* ==============================================================================
+   INITIAL LOADING SCREEN STYLES
+   ============================================================================== */
+
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #040406;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+#loading-screen.loaded {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  max-width: 480px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtle glowing aura behind loader */
+.loader-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(244, 208, 104, 0.12) 0%, rgba(255, 101, 132, 0.08) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: auraBreathe 4s ease-in-out infinite alternate;
+}
+
+@keyframes auraBreathe {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1.25); opacity: 0.9; }
+}
+
+/* Monogram or Emblem */
+.loader-emblem {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loader-emblem::before,
+.loader-emblem::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold));
+}
+
+.loader-emblem::after {
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+}
+
+/* Main Percentage Display */
+.loader-percentage-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.loader-percentage {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 9vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #fef5d8 40%, #f4d068 75%, #ff8da1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(244, 208, 104, 0.3);
+  font-variant-numeric: tabular-nums;
+}
+
+.loader-percentage-sign {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--accent-gold);
+  margin-left: 6px;
+  opacity: 0.75;
+}
+
+/* Sleek Progress Bar */
+.loader-bar-outer {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  position: relative;
+  overflow: visible;
+  margin-bottom: 24px;
+}
+
+.loader-bar-inner {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f4d068 0%, #ffa8ba 50%, #ff6584 100%);
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 0 16px rgba(244, 208, 104, 0.75), 0 0 30px rgba(255, 101, 132, 0.5);
+  transition: width 0.12s linear;
+}
+
+.loader-bar-inner::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  bottom: -3px;
+  width: 7px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #fff, 0 0 20px var(--accent-gold);
+}
+
+/* Romantic Subtitle / Prompt */
+.loader-message {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  min-height: 1.6em;
+  transition: opacity 0.4s ease;
+}
+
+/* Subtle 99% suspense indicator pulse */
+.loader-suspense-pulse {
+  display: inline-block;
+  animation: suspenseBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes suspenseBlink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; text-shadow: 0 0 10px var(--accent-rose); }
+}

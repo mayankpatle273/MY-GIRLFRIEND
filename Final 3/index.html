@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Special Surprise Is Waiting... | 15 October 2026</title>
+  
+  <!-- SEO & Favicon -->
+  <meta name="description" content="A cinematic, animated interactive birthday countdown and surprise portfolio experience.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loading.css">
+  <link rel="stylesheet" href="css/background.css">
+  <link rel="stylesheet" href="css/countdown.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Film Grain Noise Texture -->
+  <div class="ambient-noise"></div>
+
+  <!-- Ambient Audio Sound Controller -->
+  <button id="ambient-sound-btn" class="ambient-sound-toggle" aria-label="Toggle Ambient Audio">
+    <span class="sound-bars muted" id="sound-bars-indicator">
+      <span class="sound-bar"></span>
+      <span class="sound-bar"></span>
+      <span class="sound-bar"></span>
+    </span>
+    <span id="sound-btn-text">Audio Off</span>
+  </button>
+  <audio id="ambient-bg-audio" loop preload="none">
+    <!-- Royalty-free romantic soft ambient piano tune -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112199.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- =========================================================================
+       1. INITIAL FULL-SCREEN LOADING SCREEN
+       ========================================================================= -->
+  <div id="loading-screen" role="dialog" aria-modal="true" aria-label="Loading Experience">
+    <div class="loader-aura"></div>
+    <div class="loader-container">
+      <div class="loader-emblem">
+        <span>Chapter 2026</span>
+      </div>
+      
+      <div class="loader-percentage-wrap">
+        <span class="loader-percentage" id="loader-percentage-num">0</span>
+        <span class="loader-percentage-sign">%</span>
+      </div>
+
+      <div class="loader-bar-outer">
+        <div class="loader-bar-inner" id="loader-bar-fill"></div>
+      </div>
+
+      <div class="loader-message" id="loader-message-text">
+        Curating our sweetest memories...
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. ANIMATED BACKGROUND WITH 50+ ROTATING PHOTOGRAPHS
+       ========================================================================= -->
+  <div class="background-wall-container" aria-hidden="true">
+    <!-- Ambient Glow Orbs -->
+    <div class="bg-glow-orb gold"></div>
+    <div class="bg-glow-orb rose"></div>
+    
+    <!-- Multi-Column Grid Populated via js/background.js -->
+    <div class="photo-columns-grid" id="photo-columns-grid"></div>
+    
+    <!-- Vignette and Tint Overlays to Ensure Foreground Legibility -->
+    <div class="background-vignette-overlay"></div>
+    <div class="background-gradient-tint"></div>
+  </div>
+
+  <!-- =========================================================================
+       3. FOREGROUND COUNTDOWN TIMER & CELEBRATION REVEAL
+       ========================================================================= -->
+  <main class="countdown-hero-section">
+    <div class="countdown-content-wrapper">
+      
+      <!-- Romantic Eyebrow & Headings -->
+      <header class="countdown-header">
+        <div class="countdown-eyebrow">
+          <span class="sparkle-icon">✨</span>
+          <span>A Moment Worth Waiting For</span>
+          <span class="sparkle-icon">✨</span>
+        </div>
+        <h1 class="countdown-title" id="countdown-title">
+          Something Special Is Waiting...
+        </h1>
+        <p class="countdown-subtitle" id="countdown-subtitle">
+          Counting down every heartbeat until 15 October 2026. A cinematic universe created just for you.
+        </p>
+      </header>
+
+      <!-- 4 Glowing Countdown Cards: Days, Hours, Minutes, Seconds -->
+      <div class="countdown-cards-grid" id="countdown-cards-grid" aria-label="Countdown to 15 October 2026">
+        
+        <div class="time-unit-card">
+          <div class="time-digit" id="count-days">00</div>
+          <div class="time-label">Days</div>
+        </div>
+
+        <div class="time-unit-card">
+          <div class="time-digit" id="count-hours">00</div>
+          <div class="time-label">Hours</div>
+        </div>
+
+        <div class="time-unit-card">
+          <div class="time-digit" id="count-minutes">00</div>
+          <div class="time-label">Minutes</div>
+        </div>
+
+        <div class="time-unit-card">
+          <div class="time-digit" id="count-seconds">00</div>
+          <div class="time-label">Seconds</div>
+        </div>
+
+      </div>
+
+      <!-- Real Birthday Reveal Button (Unhides automatically when countdown hits zero) -->
+      <div class="countdown-reveal-container" id="countdown-reveal-container">
+        <div style="position: relative;">
+          <div class="reveal-pulse-ring"></div>
+          <a href="surprise.html" id="btn-birthday-reveal" class="btn-birthday-reveal">
+            Open Your Surprise ❤️
+          </a>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       SURPRISE DEMO TIMER WIDGET (STRICTLY AT BOTTOM-RIGHT CORNER)
+       ========================================================================= -->
+  <aside id="surprise-demo-widget" class="surprise-demo-widget" aria-label="Surprise Demo Countdown">
+    <div class="demo-widget-header">
+      <span class="demo-live-badge"></span>
+      <span class="demo-widget-title">Surprise Demo</span>
+    </div>
+
+    <div class="demo-timer-box">
+      <div class="demo-timer-digits" id="demo-timer-digits">00:08</div>
+      <div class="demo-timer-sub" id="demo-timer-sub">Demo Countdown</div>
+    </div>
+
+    <!-- Once timer ends, this Welcome button appears directly underneath -->
+    <div class="demo-welcome-container" id="demo-welcome-container">
+      <a href="surprise.html" class="btn-demo-welcome" id="btn-demo-welcome">
+        <span>Welcome</span>
+        <span class="welcome-arrow">✨</span>
+      </a>
+      <button type="button" class="demo-restart-btn" id="demo-restart-btn">↺ Reset Demo</button>
+    </div>
+  </aside>
+
+  <!-- Sound Toggle Script -->
+  <script>
+    (function() {
+      const soundBtn = document.getElementById('ambient-sound-btn');
+      const soundBars = document.getElementById('sound-bars-indicator');
+      const soundText = document.getElementById('sound-btn-text');
+      const audio = document.getElementById('ambient-bg-audio');
+
+      if (!soundBtn || !audio) return;
+
+      soundBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().then(() => {
+            soundBars.classList.remove('muted');
+            soundText.textContent = 'Audio On';
+          }).catch(err => {
+            console.log('Audio autoplay prevented:', err);
+          });
+        } else {
+          audio.pause();
+          soundBars.classList.add('muted');
+          soundText.textContent = 'Audio Off';
+        }
+      });
+    })();
+  </script>
+
+  <!-- JavaScript Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/background.js"></script>
+  <script src="js/countdown.js"></script>
+</body>
+</html>

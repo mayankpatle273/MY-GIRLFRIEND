@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Birthday Surprise ❤️ | 15 October 2026</title>
+  
+  <meta name="description" content="A romantic interactive birthday surprise with full-screen cinema, storytelling photo reveal, and 3D rotating memory gallery.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/video.css">
+  <link rel="stylesheet" href="css/scroll-effects.css">
+  <link rel="stylesheet" href="css/portals.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Film Grain Noise Texture -->
+  <div class="ambient-noise"></div>
+
+  <!-- =========================================================================
+       4. FULL-SCREEN CINEMATIC VIDEO INTRODUCTION
+       ========================================================================= -->
+  <section class="video-section" id="video-intro-section" aria-label="Cinematic Video Prelude">
+    
+    <!-- Anamorphic Letterbox Bars -->
+    <div class="letterbox-bar top"></div>
+    <div class="letterbox-bar bottom"></div>
+
+    <!-- Video Color Grading Overlay -->
+    <div class="video-color-grade"></div>
+
+    <!-- Top Floating Navigation & Controls -->
+    <header class="video-controls-header">
+      <a href="index.html" class="video-control-pill" title="Return to Countdown">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        <span>Countdown</span>
+      </a>
+
+      <div class="video-controls-group">
+        <button id="video-sound-toggle" class="video-control-pill" aria-label="Toggle Sound">
+          <svg id="video-sound-icon" viewBox="0 0 24 24">
+            <!-- Default muted icon -->
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.73 4.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+          </svg>
+          <span id="video-sound-label">Unmute</span>
+        </button>
+
+        <button id="video-replay-btn" class="video-control-pill" title="Replay Video">
+          <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+          <span>Replay</span>
+        </button>
+
+        <button id="video-skip-btn" class="video-control-pill" title="Skip to Story">
+          <span>Skip to Story</span>
+          <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main HTML5 Video Player -->
+    <video
+      id="intro-cinematic-video"
+      class="cinematic-video-element"
+      playsinline
+      webkit-playsinline
+      preload="auto">
+    </video>
+
+    <!-- Cinematic Captions -->
+    <div class="video-caption-container">
+      <div class="video-tag">A Cinematic Prelude</div>
+      <h2 class="video-title">For The One Who Shines Brightest</h2>
+    </div>
+
+    <!-- Scroll Indicator at Bottom (Appears once video ends) -->
+    <a href="#story-reveal-section" class="video-scroll-indicator" id="video-scroll-indicator">
+      <span>Scroll Down</span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+    </a>
+
+    <!-- Fallback / Manual Play Overlay -->
+    <div class="video-fallback-overlay" id="video-fallback-overlay">
+      <button class="btn-play-video" id="btn-manual-play" aria-label="Play Surprise Video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <h3 class="fallback-heading">Experience Your Birthday Film</h3>
+      <p class="fallback-subtext">Click above to start the cinematic surprise presentation with audio.</p>
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       5. SCROLL-BASED PHOTO REVEAL & 6. ANIMATED TYPING MESSAGE
+       ========================================================================= -->
+  <section class="story-section" id="story-reveal-section" aria-label="Our Story & Birthday Message">
+    <div class="story-ambient-glow"></div>
+
+    <header class="story-header">
+      <div class="story-scroll-prompt">
+        <span>Keep scrolling to unlock our chapter</span>
+        <span class="arrow">↓</span>
+      </div>
+    </header>
+
+    <div class="story-interactive-stage">
+      
+      <!-- Rising & Shifting Hero Photo -->
+      <div class="hero-photo-wrapper" id="hero-photo-wrapper">
+        <div class="hero-photo-card" id="hero-photo-card">
+          <img
+            id="hero-story-img"
+            src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1000&auto=format&fit=crop&q=80"
+            alt="Hero Moment"
+            loading="lazy">
+          <div class="hero-photo-badge">
+            <span class="hero-badge-title" id="hero-story-caption">The Day My World Sparkled ❤️</span>
+            <span class="hero-badge-date" id="hero-story-date">Forever & Always</span>
+          </div>
+        </div>
+
+        <!-- Decorative Parallax Accent Memories -->
+        <div class="accent-card accent-card-1" id="accent-card-1">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&auto=format&fit=crop&q=80" alt="Accent Photo 1" loading="lazy">
+        </div>
+        <div class="accent-card accent-card-2" id="accent-card-2">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80" alt="Accent Photo 2" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Romantic Typing Birthday Message Card -->
+      <div class="message-story-wrapper" id="message-story-wrapper">
+        <div class="message-card">
+          <div class="message-meta-tag">
+            <span class="message-label">A Letter From My Heart</span>
+            <span class="message-date">15 October 2026</span>
+          </div>
+
+          <h3 class="message-heading">To My Favorite Human Being</h3>
+
+          <div class="typing-body-container">
+            <p class="typing-body-text"><span id="typing-message-target"></span><span class="typing-cursor" id="typing-cursor"></span></p>
+          </div>
+
+          <div class="message-signature">
+            <span class="signature-heart">❤️</span>
+            <span class="signature-text">With all my love, always & forever</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SPECIAL ROMANTIC SURPRISE BUTTONS
+       ========================================================================= -->
+  <section class="surprise-portals-section" id="surprise-portals-section" aria-label="Special Surprise Chapters">
+    <div class="portals-container">
+      <div class="portals-eyebrow">
+        <span>✨ Two Chapters Waiting For You ✨</span>
+      </div>
+      <h2 class="portals-heading">Two Special Surprises Just For You</h2>
+      <p class="portals-subtext">
+        Click each surprise below to step into our most intimate memories and a heartfelt letter.
+      </p>
+
+      <div class="portals-grid">
+        <!-- Button 1: Our Video Memories 🎬 -->
+        <button type="button" class="portal-btn portal-btn-videos" id="btn-portal-videos" data-href="videos.html" aria-label="Open Our Video Memories">
+          <div class="portal-icon-wrap">
+            <span class="portal-icon">🎬</span>
+          </div>
+          <div class="portal-content">
+            <span class="portal-title">Our Video Memories 🎬</span>
+            <span class="portal-desc">Five little pieces of our story, moving in frames</span>
+          </div>
+          <span class="portal-arrow">→</span>
+        </button>
+
+        <!-- Button 2: A Letter From My Heart 💌 -->
+        <button type="button" class="portal-btn portal-btn-letter" id="btn-portal-letter" data-href="letter.html" aria-label="Open A Letter From My Heart">
+          <div class="portal-icon-wrap">
+            <span class="portal-icon">💌</span>
+          </div>
+          <div class="portal-content">
+            <span class="portal-title">A Letter From My Heart 💌</span>
+            <span class="portal-desc">A 100-line love letter written with all my heart</span>
+          </div>
+          <span class="portal-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. CONTINUOUSLY ROTATING 3D PHOTO GALLERY ("Little Moments, Endless Love")
+       ========================================================================= -->
+  <section class="gallery-section" id="memory-gallery-section" aria-label="3D Memory Gallery">
+    
+    <header class="gallery-header">
+      <div class="gallery-eyebrow">
+        <span>✨ Moments We Will Never Forget ✨</span>
+      </div>
+      <h2 class="gallery-title"> Little Moments,</h2>
+           <h2 class="gallery-title1"> Endless Love</h2>
+      <p class="gallery-subtitle">
+        Every photograph holds a world of laughter and starlight. Click any moment to step back in time.
+      </p>
+    </header>
+
+    <!-- 3D Carousel Stage -->
+    <div class="carousel-stage" id="carousel-stage">
+      <div class="carousel-ring" id="carousel-ring">
+        <!-- Injected dynamically via js/gallery.js from config.js -->
+      </div>
+    </div>
+
+    <!-- Carousel Controls Bar -->
+    <div class="carousel-controls-bar">
+      <button class="carousel-nav-btn" id="carousel-prev-btn" aria-label="Previous Memory" title="Rotate Left">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <div class="carousel-hint-pill">
+        Drag or Swipe to Rotate • Tap Photo for Details
+      </div>
+
+      <button class="carousel-nav-btn" id="carousel-next-btn" aria-label="Next Memory" title="Rotate Right">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       INTERACTIVE PHOTO DETAILS MODAL
+       ========================================================================= -->
+  <div class="photo-modal-backdrop" id="photo-modal" role="dialog" aria-modal="true" aria-label="Memory Details">
+    <div class="photo-modal-window">
+      
+      <!-- Close Button -->
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Details">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+
+      <!-- Enlarged Image -->
+      <div class="modal-image-pane">
+        <img id="modal-detail-img" src="" alt="Enlarged Memory">
+      </div>
+
+      <!-- Memory Story Details -->
+      <div class="modal-details-pane">
+        <div>
+          <div class="modal-header-meta">
+            <span class="modal-tag">Treasured Memory</span>
+            <span class="modal-date-tag" id="modal-detail-date">Date</span>
+          </div>
+
+          <h3 class="modal-title" id="modal-detail-title">Memory Title</h3>
+
+          <div class="modal-location" id="modal-detail-location">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Location</span>
+          </div>
+
+          <p class="modal-story-text" id="modal-detail-story">
+            Personal memory details...
+          </p>
+        </div>
+
+        <!-- Previous / Next Controls Inside Modal -->
+        <div class="modal-nav-bar">
+          <button class="modal-step-btn" id="modal-step-prev">
+            <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            <span>Previous</span>
+          </button>
+
+          <span class="modal-counter-indicator" id="modal-detail-counter">1 of 12</span>
+
+          <button class="modal-step-btn" id="modal-step-next">
+            <span>Next</span>
+            <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- External Animation Libraries (GSAP & ScrollTrigger) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Project JavaScript Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/scroll-effects.js"></script>
+  <script src="js/typing.js"></script>
+  <script src="js/portals.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>

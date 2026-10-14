@@ -1,0 +1,402 @@
+/* ==============================================================================
+   COUNTDOWN TIMER & FOREGROUND PRESENTATION
+   ============================================================================== */
+
+.countdown-hero-section {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.countdown-content-wrapper {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  animation: contentFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Text */
+.countdown-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.countdown-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  background: rgba(244, 208, 104, 0.1);
+  padding: 6px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(244, 208, 104, 0.25);
+  box-shadow: 0 0 15px rgba(244, 208, 104, 0.15);
+}
+
+.countdown-eyebrow .sparkle-icon {
+  font-size: 0.9rem;
+  animation: sparkleRotate 3s linear infinite;
+}
+
+@keyframes sparkleRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.countdown-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.countdown-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 300;
+  max-width: 620px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Countdown Digits Grid */
+.countdown-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 760px;
+  margin: 10px 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.countdown-cards-grid.hidden-countdown {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+  display: none;
+}
+
+/* Single Countdown Card */
+.time-unit-card {
+  position: relative;
+  background: rgba(14, 15, 22, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(244, 208, 104, 0.35);
+  border-radius: 20px;
+  padding: 24px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.time-unit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.6;
+}
+
+.time-unit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(244, 208, 104, 0.45);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(244, 208, 104, 0.2);
+}
+
+.time-digit {
+  font-family: var(--font-mono);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #fff1c4 40%, #f4d068 80%, #ffa8ba 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  text-shadow: 0 0 20px rgba(244, 208, 104, 0.25);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.time-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Birthday Surprise Reveal Button (when countdown hits 0) */
+.countdown-reveal-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 0;
+  animation: revealPulseEntry 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.countdown-reveal-container.active {
+  display: flex;
+}
+
+@keyframes revealPulseEntry {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.btn-birthday-reveal {
+  padding: 22px 52px;
+  font-size: 1.35rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, #ff6584 0%, #f4d068 50%, #ff8da1 100%);
+  background-size: 200% 200%;
+  color: #0b0c10;
+  border-radius: 60px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 15px 45px rgba(255, 101, 132, 0.45), 0 0 30px rgba(244, 208, 104, 0.4);
+  animation: gradientShift 4s ease infinite, floatingButton 3s ease-in-out infinite alternate;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-birthday-reveal:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 20px 55px rgba(255, 101, 132, 0.6), 0 0 45px rgba(244, 208, 104, 0.6);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingButton {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.reveal-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 65px;
+  border: 2px solid var(--accent-rose);
+  opacity: 0;
+  animation: ringPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* ==============================================================================
+   STRICTLY BOTTOM-RIGHT SURPRISE DEMO TIMER WIDGET
+   ============================================================================== */
+
+.surprise-demo-widget {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(13, 14, 22, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(244, 208, 104, 0.4);
+  border-radius: 20px;
+  padding: 16px 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 25px rgba(244, 208, 104, 0.18);
+  min-width: 195px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.surprise-demo-widget:hover {
+  border-color: rgba(244, 208, 104, 0.6);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 35px rgba(244, 208, 104, 0.28);
+}
+
+.demo-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.demo-live-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff6584;
+  box-shadow: 0 0 10px #ff6584;
+  animation: liveDotPulse 1.5s infinite;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.demo-widget-title {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.demo-timer-box {
+  background: rgba(5, 6, 9, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px 14px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.demo-timer-digits {
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, #ffffff 0%, #fff0be 50%, #f4d068 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(244, 208, 104, 0.3);
+}
+
+.demo-timer-sub {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+}
+
+/* Once timer ends, this Welcome container displays directly underneath */
+.demo-welcome-container {
+  margin-top: 8px;
+  width: 100%;
+  display: none;
+  animation: welcomeSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.demo-welcome-container.active {
+  display: block;
+}
+
+@keyframes welcomeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.btn-demo-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #f4d068 0%, #ff6584 100%);
+  color: #0b0c10;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  border-radius: 30px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 101, 132, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-demo-welcome:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(244, 208, 104, 0.6), 0 0 20px rgba(255, 101, 132, 0.5);
+}
+
+.demo-restart-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  cursor: pointer;
+  margin-top: 6px;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.demo-restart-btn:hover {
+  color: var(--accent-gold);
+}

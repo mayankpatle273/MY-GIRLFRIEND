@@ -1,0 +1,295 @@
+/* ==============================================================================
+   SCROLL-BASED PHOTO REVEAL & STORYTELLING SECTION
+   ============================================================================== */
+
+.story-section {
+  position: relative;
+  min-height: 140vh;
+  padding: 100px 24px;
+  background: linear-gradient(180deg, #030305 0%, #08090f 50%, #060609 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 15;
+  overflow: hidden;
+}
+
+/* Subtle background stars & dust */
+.story-ambient-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(244, 208, 104, 0.08) 0%, rgba(255, 101, 132, 0.05) 50%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Story Header & Prompt */
+.story-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.story-scroll-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  background: rgba(244, 208, 104, 0.08);
+  border: 1px solid rgba(244, 208, 104, 0.2);
+  padding: 8px 22px;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: promptFloat 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes promptFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+.story-scroll-prompt .arrow {
+  animation: arrowDip 1.5s infinite;
+}
+
+@keyframes arrowDip {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* Interactive Story Stage */
+.story-interactive-stage {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  position: relative;
+  z-index: 5;
+  min-height: 650px;
+}
+
+/* Central Hero Photo Card */
+.hero-photo-wrapper {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+  will-change: transform, opacity;
+}
+
+.hero-photo-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #11131c;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(244, 208, 104, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-photo-card:hover {
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 45px rgba(244, 208, 104, 0.3);
+}
+
+.hero-photo-card img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05) brightness(0.95);
+}
+
+.hero-photo-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(12, 13, 19, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-badge-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hero-badge-date {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+/* Floating Decorative Secondary Accent Cards */
+.accent-card {
+  position: absolute;
+  width: 180px;
+  height: 230px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #151722;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  z-index: 6;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.accent-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accent-card-1 {
+  top: -40px;
+  left: -50px;
+  transform: rotate(-8deg);
+}
+
+.accent-card-2 {
+  bottom: -40px;
+  right: -50px;
+  transform: rotate(8deg);
+}
+
+/* Romantic Typing Message Card */
+.message-story-wrapper {
+  flex: 1;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+  will-change: transform, opacity;
+}
+
+.message-card {
+  background: rgba(16, 17, 25, 0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 24px;
+  padding: 44px 38px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.message-meta-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.message-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.message-date {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.message-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+
+/* Typing Message Text Body */
+.typing-body-container {
+  min-height: 130px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.typing-body-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-weight: 400;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Glowing Blinking Cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.3em;
+  background-color: var(--accent-rose);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: cursorBlink 0.8s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--accent-rose);
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.typing-cursor.done {
+  animation: none;
+  opacity: 0.4;
+}
+
+.message-signature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+}
+
+.signature-heart {
+  font-size: 1.4rem;
+  color: var(--accent-rose);
+  animation: heartPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+.signature-text {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+}

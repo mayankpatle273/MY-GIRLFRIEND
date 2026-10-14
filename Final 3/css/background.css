@@ -1,0 +1,166 @@
+/* ==============================================================================
+   ANIMATED 50+ PHOTO BACKGROUND WALL
+   ============================================================================== */
+
+.background-wall-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  background-color: var(--bg-primary);
+}
+
+/* Multi-Column Grid */
+.photo-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  width: 110vw;
+  height: 120vh;
+  position: absolute;
+  top: -10vh;
+  left: -5vw;
+  transform: rotate(-1.5deg) scale(1.05); /* Subtle editorial tilt for portfolio aesthetic */
+  transition: opacity 1.2s ease;
+}
+
+/* Individual Column */
+.photo-column {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inner Scrolling Track */
+.photo-column-track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  will-change: transform;
+}
+
+/* Upward Infinite Scroll */
+.photo-column-track.scroll-up {
+  animation: scrollTrackUp linear infinite;
+}
+
+/* Downward Infinite Scroll */
+.photo-column-track.scroll-down {
+  animation: scrollTrackDown linear infinite;
+}
+
+@keyframes scrollTrackUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollTrackDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Individual Photo Card */
+.bg-photo-card {
+  width: 100%;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #11131a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+/* Alternating Heights (Portrait vs Landscape aspect ratios) */
+.bg-photo-card.ratio-portrait {
+  height: 290px;
+}
+
+.bg-photo-card.ratio-landscape {
+  height: 190px;
+}
+
+.bg-photo-card.ratio-square {
+  height: 230px;
+}
+
+.bg-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85) contrast(1.05) saturate(1.15);
+  transition: filter 0.5s ease;
+}
+
+/* Subtle Shimmer Overlay on Cards */
+.bg-photo-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 40%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+}
+
+/* Dark Romantic Gradients & Vignette Overlay */
+.background-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(circle at center, rgba(6, 6, 9, 0.62) 0%, rgba(6, 6, 9, 0.88) 60%, rgba(6, 6, 9, 0.98) 100%);
+  pointer-events: none;
+}
+
+.background-gradient-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(135deg, rgba(244, 208, 104, 0.05) 0%, transparent 40%, rgba(255, 101, 132, 0.07) 100%);
+  pointer-events: none;
+}
+
+/* Ambient Dreamy Glow Orbs */
+.bg-glow-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.35;
+  animation: orbDrift 20s ease-in-out infinite alternate;
+}
+
+.bg-glow-orb.gold {
+  top: 10%;
+  left: 15%;
+  background: radial-gradient(circle, #f4d068 0%, rgba(244, 208, 104, 0) 70%);
+}
+
+.bg-glow-orb.rose {
+  bottom: 10%;
+  right: 15%;
+  background: radial-gradient(circle, #ff6584 0%, rgba(255, 101, 132, 0) 70%);
+  animation-delay: -10s;
+}
+
+@keyframes orbDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.15); }
+  100% { transform: translate(-40px, 50px) scale(0.95); }
+}
